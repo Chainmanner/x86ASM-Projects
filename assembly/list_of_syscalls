@@ -1,0 +1,32 @@
+list of syscalls:
+	1 - sys_exit - int(error code)
+	2 - sys_fork - struct pt_regs
+	3 - sys_read - uint(filedesc), char *(buffer), size_t(count)
+	4 - sys_write - uint(filedesc), const char*(buffer), size_t(count)
+	5 - sys_open - const char *(filename), int(flags), int(mode)
+		flags: ???
+		mode: ???
+	6 - sys_close - unsigned int(fd)
+
+	29 (0x1D) - sys_pause - no args
+
+For filedesc, to read/write to stdin/stdout, use "1".
+
+0x80 - syscall interrupt
+format:
+	eax - syscall # / return value
+	ebx - param1
+	ecx - param2
+	edx - param3
+	esi - param4
+	edi - param5
+	ebp - param6
+syscall - dedicated instruction for this (apparently faster)
+format:
+	rax - syscall # / return value
+	rdi - param1
+	rsi - param2
+	rdx - param3
+	r10 - param4
+	r8 - param5
+	p9 - param6
